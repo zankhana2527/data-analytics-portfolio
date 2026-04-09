@@ -81,7 +81,7 @@ GROUP BY tco.customer_id
 -- 9. What was the total volume of pizzas ordered for each hour of the day?
 
 SELECT 
-	extract(hour from order_time) as hour,
+	EXTRACT(hour from order_time) AS hour,
     COUNT(pizza_id)
 FROM temp_customer_orders
 GROUP BY hour
@@ -90,7 +90,7 @@ ORDER BY hour;
 -- 10. What was the volume of orders for each day of the week?
 
 SELECT 
-	extract(dow from order_time) as day,
+	EXTRACT(dow from order_time) AS day,
 	COUNT(pizza_id)
 FROM temp_customer_orders
 GROUP BY day

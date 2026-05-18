@@ -6,4 +6,5 @@ This section contains my SQL practice, case studies and challenges.
 | Folder | Description |
 |--------|-------------|
 | [case-studies](./case-studies) | Real world business problem solving |
-| [challenges](./challenges) | Platform challenges from DataLemur etc. |
+| [challenges](./data-lemur) | Platform challenges from DataLemur etc. |
+| [data-warehouse-project](./data-warehouse-project) | Data warehouse project using medallion architecture |

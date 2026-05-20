@@ -89,7 +89,7 @@ SELECT
 	sd.sls_price AS price
 FROM silver.crm_sales_details sd
 LEFT JOIN gold.dim_products pr 
-ON sd.sls_prd_key = pr.product_name
+ON sd.sls_prd_key = pr.product_number
 LEFT JOIN gold.dim_customers cu
 ON sd.sls_cust_id = cu.customer_id;
 GO

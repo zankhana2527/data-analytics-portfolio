@@ -7,11 +7,11 @@ This repository has my solutions for the amazing case studies create by [Danny M
 | 1 | Danny's Diner | [View](./01-dannys-diner) | ✅ Done | Joins, CTEs, Aggregations, Window Functions |
 | 2 | Pizza Runner | [View](./02-pizza-runner) | ✅ Done | Data Cleaning, Joins, Case Statements |
 | 3 | Foodie-Fi | [View](./03-foodie-fi) | ✅ Done | Subscriptions, Time-based Analysis |
-| 4 | Data Bank | [View](./04-data-bank) | ⏳ Coming soon | Customer Metrics, Distributions |
-| 5 | Data Mart | [View](./05-data-mart) | ⏳ Coming soon | Date Functions, Before & After Analysis |
-| 6 | Clique Bait | [View](./06-clique-bait) | ⏳ Coming soon | Digital Analytics, Funnels |
-| 7 | Balanced Tree | [View](./07-balanced-tree) | ⏳ Coming soon | Revenue Analysis, Transactions |
-| 8 | Fresh Segments | [View](./08-fresh-segments) | ⏳ Coming soon | Customer Segmentation |
+| 4 | Data Bank | [View](./04-data-bank) | ⏳ WIP | Customer Metrics, Distributions |
+| 5 | Data Mart | [View](./05-data-mart) | ⏳ WIP | Date Functions, Before & After Analysis |
+| 6 | Clique Bait | [View](./06-clique-bait) | ⏳ WIP | Digital Analytics, Funnels |
+| 7 | Balanced Tree | [View](./07-balanced-tree) | ⏳ WIP | Revenue Analysis, Transactions |
+| 8 | Fresh Segments | [View](./08-fresh-segments) | ⏳ WIP | Customer Segmentation |
 
 ---
 

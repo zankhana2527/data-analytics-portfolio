@@ -1,16 +1,12 @@
-# 8 Week SQL Challenge — Danny Ma
-
-SQL case study solutions from the [8 Week SQL Challenge](https://8weeksqlchallenge.com/) by Danny Ma, covering real-world business scenarios across 8 datasets.
-
----
-
+# 8 Week SQL Challenge By Danny Ma
+This repository has my solutions for the amazing case studies create by [Danny Ma](https://www.linkedin.com/in/datawithdanny/).
 ## Case studies
 
 | # | Case study | Folder | Status | Key topics |
 |---|------------|--------|--------|------------|
 | 1 | Danny's Diner | [View](./01-dannys-diner) | ✅ Complete | Joins, CTEs, Aggregations, Window Functions |
-| 2 | Pizza Runner | [View](./02-pizza-runner) | ⏳ Coming soon | Data Cleaning, Joins, Case Statements |
-| 3 | Foodie-Fi | [View](./03-foodie-fi) | ⏳ Coming soon | Subscriptions, Time-based Analysis |
+| 2 | Pizza Runner | [View](./02-pizza-runner) | ✅ Complete | Data Cleaning, Joins, Case Statements |
+| 3 | Foodie-Fi | [View](./03-foodie-fi) | ✅ Complete | Subscriptions, Time-based Analysis |
 | 4 | Data Bank | [View](./04-data-bank) | ⏳ Coming soon | Customer Metrics, Distributions |
 | 5 | Data Mart | [View](./05-data-mart) | ⏳ Coming soon | Date Functions, Before & After Analysis |
 | 6 | Clique Bait | [View](./06-clique-bait) | ⏳ Coming soon | Digital Analytics, Funnels |
@@ -21,9 +17,8 @@ SQL case study solutions from the [8 Week SQL Challenge](https://8weeksqlchallen
 
 ## Tools & skills
 
-- **Database:** PostgreSQL
+- **Database:** SQL Server
 - **Skills:** Joins, CTEs, Window Functions, Aggregations, Subqueries, Data Cleaning, Date Functions, Case Statements
-- **Platform:** [db-fiddle](https://www.db-fiddle.com/) / [sqliteonline](https://sqliteonline.com/)
 
 ---
 
@@ -31,8 +26,18 @@ SQL case study solutions from the [8 Week SQL Challenge](https://8weeksqlchallen
 
 Each case study folder contains:
 
-- `solution.sql` — SQL queries with comments
-- `insights.md` — findings and business answers
+- `solution.sql` — My SQL Query
+- `insights.md` — Finding and Business Answers
+
+---
+
+## Acknowledgments
+
+Every case study solved was a lesson learned! Deep gratitude to Danny Ma for designing such a beautiful and challenging curriculum. I also want to give a massive shout-out to the GitHub creators whose profiles provided the perfect spark of inspiration whenever I got stuck. This project is a testament to great design and open-source community support.
+
+- [Faizan Mulla's SQL Portfolio](https://github.com/faizanxmulla/sql-portfolio/tree/main)
+- [Manaswi Kamila's GitHub](https://github.com/manaswikamila05/8-Week-SQL-Challenge)
+- [Katie Huang's GitHub](https://github.com/katiehuangx/8-Week-SQL-Challenge)
 
 ---
 

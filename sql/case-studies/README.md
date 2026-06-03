@@ -4,9 +4,9 @@ This repository has my solutions for the amazing case studies create by [Danny M
 
 | # | Case study | Folder | Status | Key topics |
 |---|------------|--------|--------|------------|
-| 1 | Danny's Diner | [View](./01-dannys-diner) | ✅ Complete | Joins, CTEs, Aggregations, Window Functions |
-| 2 | Pizza Runner | [View](./02-pizza-runner) | ✅ Complete | Data Cleaning, Joins, Case Statements |
-| 3 | Foodie-Fi | [View](./03-foodie-fi) | ✅ Complete | Subscriptions, Time-based Analysis |
+| 1 | Danny's Diner | [View](./01-dannys-diner) | ✅ Done | Joins, CTEs, Aggregations, Window Functions |
+| 2 | Pizza Runner | [View](./02-pizza-runner) | ✅ Done | Data Cleaning, Joins, Case Statements |
+| 3 | Foodie-Fi | [View](./03-foodie-fi) | ✅ Done | Subscriptions, Time-based Analysis |
 | 4 | Data Bank | [View](./04-data-bank) | ⏳ Coming soon | Customer Metrics, Distributions |
 | 5 | Data Mart | [View](./05-data-mart) | ⏳ Coming soon | Date Functions, Before & After Analysis |
 | 6 | Clique Bait | [View](./06-clique-bait) | ⏳ Coming soon | Digital Analytics, Funnels |

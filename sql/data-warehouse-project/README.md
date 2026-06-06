@@ -2,13 +2,10 @@
 
 This project builds a data warehouse using SQL Server. It takes raw sales data from two source systems : an ERP and a CRM : and processes it through a series of steps to produce clean, structured data ready for business reporting and analysis.
 
----
 
 ## What This Project Does
 
 The project covers the full journey of data : from raw CSV files all the way to a reporting-ready database model. It handles data ingestion, cleaning, transformation, and modelling, and finishes with SQL-based analytics covering sales, customers, and products.
-
----
 
 ## Architecture
 
@@ -19,8 +16,6 @@ The project follows a three-layer approach called Medallion Architecture.
 **Silver layer** : the raw data is cleaned and standardised here. This includes removing duplicates, handling missing values, fixing data types, and joining the ERP and CRM data together into one consistent dataset.
 
 **Gold layer** : the cleaned data is modelled into a star schema, which is a structure designed for fast and easy querying. This is where all the reporting and analytics happen.
-
----
 
 ## Data Model
 
@@ -33,8 +28,6 @@ The Gold layer uses a star schema with one central fact table and supporting dim
 
 The dimension tables connect to `fact_sales` through foreign keys, making it straightforward to slice and analyse the data from any angle.
 
----
-
 ## ETL Pipeline
 
 The data moves through three stages.
@@ -45,7 +38,6 @@ The data moves through three stages.
 
 3. **Load** : the Silver data is modelled into the star schema and published to the Gold layer, where it is tested for quality and made available for reporting.
 
----
 
 ## Analytics
 
@@ -57,7 +49,6 @@ Three areas of analysis are built on top of the Gold layer.
 
 **Sales trends** : tracks revenue over time, compares periods, and breaks down performance by region and order size.
 
----
 
 ## Repository Structure
 
@@ -75,7 +66,6 @@ sql-data-warehouse-project/
 └── LICENSE
 ```
 
----
 
 ## How to Run
 
@@ -85,7 +75,6 @@ sql-data-warehouse-project/
 4. Run the test scripts to verify data quality
 5. Open the analytics scripts in SSMS to query the Gold layer
 
----
 
 ## Tools Used
 
@@ -94,8 +83,6 @@ sql-data-warehouse-project/
 - T-SQL : language used for all scripts
 - Draw.io : for architecture and flow diagrams
 - Git and GitHub : version control
-
----
 
 ## License
 

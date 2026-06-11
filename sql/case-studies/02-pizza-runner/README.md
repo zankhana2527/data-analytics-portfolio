@@ -238,8 +238,20 @@ ORDER BY DATEPART(weekday, order_time);
 ### B. Runner and Customer Experience
 #### 1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 ```sql
+SELECT
+     DATEDIFF(week, '2021-01-01', registration_date) + 1 AS registration_week,
+     COUNT(runner_id) AS total_runners_signed_up
+FROM runners
+GROUP BY DATEDIFF(week, '2021-01-01', registration_date)
+ORDER BY registration_week;
 ```
 
+    registration_week  total_runners_signed_up
+    -----------------  -----------------------
+    1                  1                      
+    2                  2                      
+    3                  1         
+    
 #### 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 ```sql
 ```

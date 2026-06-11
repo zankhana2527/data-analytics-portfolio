@@ -25,18 +25,20 @@ FROM customer_orders;
 
 DROP TABLE IF EXISTS #temp_runner_orders;
 SELECT
-    order_id,
-    runner_id,
-    CASE WHEN pickup_time LIKE 'null' THEN NULL
+     order_id,
+     runner_id,
+     CASE WHEN pickup_time LIKE 'null' THEN NULL
          ELSE pickup_time
     END AS pickup_time,
-    CASE WHEN distance LIKE 'null' THEN NULL
+     CASE WHEN distance LIKE 'null' THEN NULL
          WHEN distance LIKE '%km' THEN TRIM ('km' FROM distance)
+         WHEN distance NOT LIKE '%km%' THEN distance
     END AS distance,
-    CASE WHEN duration LIKE '%min%' THEN TRIM(TRAILING 'minutes ' FROM duration)
+     CASE WHEN duration LIKE '%min%' THEN TRIM(TRAILING 'minutes ' FROM duration)
          WHEN duration LIKE 'null' THEN NULL
+         WHEN duration NOT LIKE '%min%' THEN duration
     END AS duration,
-    CASE WHEN cancellation LIKE 'null' OR cancellation = '' THEN NULL
+     CASE WHEN cancellation LIKE 'null' OR cancellation = '' THEN NULL
          ELSE cancellation
 END AS cancellation
 INTO #temp_runner_orders

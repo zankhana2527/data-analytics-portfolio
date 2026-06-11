@@ -35,18 +35,20 @@ FROM customer_orders;
 
 DROP TABLE IF EXISTS #temp_runner_orders;
 SELECT
-    order_id,
-    runner_id,
-    CASE WHEN pickup_time LIKE 'null' THEN NULL
+     order_id,
+     runner_id,
+     CASE WHEN pickup_time LIKE 'null' THEN NULL
          ELSE pickup_time
     END AS pickup_time,
-    CASE WHEN distance LIKE 'null' THEN NULL
+     CASE WHEN distance LIKE 'null' THEN NULL
          WHEN distance LIKE '%km' THEN TRIM ('km' FROM distance)
+         WHEN distance NOT LIKE '%km%' THEN distance
     END AS distance,
-    CASE WHEN duration LIKE '%min%' THEN TRIM(TRAILING 'minutes ' FROM duration)
+     CASE WHEN duration LIKE '%min%' THEN TRIM(TRAILING 'minutes ' FROM duration)
          WHEN duration LIKE 'null' THEN NULL
+         WHEN duration NOT LIKE '%min%' THEN duration
     END AS duration,
-    CASE WHEN cancellation LIKE 'null' OR cancellation = '' THEN NULL
+     CASE WHEN cancellation LIKE 'null' OR cancellation = '' THEN NULL
          ELSE cancellation
 END AS cancellation
 INTO #temp_runner_orders
@@ -254,27 +256,128 @@ ORDER BY registration_week;
     
 #### 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 ```sql
+-- To solve this, we need to find the difference between the order time and the pickup time.
+SELECT
+     r.runner_id,
+     AVG(DATEDIFF(minute, c.order_time, r.pickup_time)) AS avg_pickup_time_in_min
+FROM #temp_customer_orders c
+     LEFT JOIN #temp_runner_orders r
+     ON c.order_id = r.order_id
+WHERE r.cancellation IS NULL
+GROUP BY r.runner_id;
 ```
+
+    runner_id   avg_pickup_time_in_min
+    ----------  ----------------------
+    1           15                    
+    2           24                    
+    3           10    
 
 #### 3. Is there any relationship between the number of pizzas and how long the order takes to prepare?
 ```sql
+WITH
+     pizza_prepare_time_cte
+     AS
+     (
+          SELECT
+               c.order_id,
+               COUNT(c.pizza_id) AS number_of_pizza_in_order,
+               AVG(DATEDIFF(minute, c.order_time, r.pickup_time)) AS avg_pickup_time_in_min
+          FROM #temp_customer_orders c
+               LEFT JOIN #temp_runner_orders r
+               ON c.order_id = r.order_id
+          WHERE r.cancellation IS NULL
+          GROUP BY c.order_id
+     )
+
+SELECT
+     number_of_pizza_in_order,
+     AVG(avg_pickup_time_in_min) AS preparation_time
+FROM pizza_prepare_time_cte
+GROUP BY number_of_pizza_in_order;
 ```
+
+    number_of_pizza_in_order  preparation_time
+    ------------------------  ----------------
+    1                         12              
+    2                         18              
+    3                         30   
 
 #### 4. What was the average distance travelled for each customer?
 ```sql
+SELECT
+     c.customer_id,
+     CEILING(AVG(CAST(r.distance AS DECIMAL))) AS avg_distance_travelled
+FROM #temp_customer_orders c
+     LEFT JOIN #temp_runner_orders r
+     ON c.order_id = r.order_id
+WHERE r.cancellation IS NULL
+GROUP BY c.customer_id;
 ```
+
+    customer_id  avg_distance_travelled
+    -----------  ----------------------
+    101          20                    
+    102          17                    
+    103          23                    
+    104          10                    
+    105          25    
 
 #### 5. What was the difference between the longest and shortest delivery times for all orders?
 ```sql
+-- duration and distance are varchars, so this workaround can work, but find better solution at schema or temp table level.
+SELECT
+     MAX(CAST(duration AS DECIMAL)) - MIN(CAST(duration AS DECIMAL)) AS different_in_min
+FROM #temp_runner_orders;
 ```
+
+    different_in_min
+    ----------------
+    30              
 
 #### 6. What was the average speed for each runner for each delivery and do you notice any trend for these values?
 ```sql
+SELECT 
+    runner_id,
+    order_id,
+    TRY_CAST(distance AS NUMERIC(10,2)) AS distance_in_km,
+    ROUND(TRY_CAST(duration AS NUMERIC(10,2)) / 60, 2) AS duration_in_hr,
+    ROUND(TRY_CAST(distance AS NUMERIC(10,2)) * 60 / TRY_CAST(duration AS NUMERIC(10,2)), 2) AS speed
+FROM #temp_runner_orders
+WHERE distance IS NOT NULL 
+  AND duration IS NOT NULL 
+  AND cancellation IS NULL
+ORDER BY runner_id, order_id;
 ```
+
+    runner_id   order_id    distance_in_km  duration_in_hr  speed           
+    ----------  ----------  --------------  --------------  ----------------
+    1           1           20.00           0.530000        37.5000000000000
+    1           2           20.00           0.450000        44.4400000000000
+    1           3           13.40           0.330000        40.2000000000000
+    1           10          10.00           0.170000        60.0000000000000
+    2           4           23.40           0.670000        35.1000000000000
+    2           7           25.00           0.420000        60.0000000000000
+    2           8           23.40           0.250000        93.6000000000000
+    3           5           10.00           0.250000        40.0000000000000
 
 #### 7. What is the successful delivery percentage for each runner?
 ```sql
+SELECT
+     runner_id,
+     COUNT(*) AS total_orders,
+     COUNT(pickup_time) AS delivered_orders,
+     (COUNT(pickup_time) * 100 /COUNT(*)) AS success_rate
+FROM #temp_runner_orders
+GROUP BY runner_id
+ORDER BY runner_id;
 ```
+
+    runner_id   total_orders  delivered_orders  success_rate
+    ----------  ------------  ----------------  ------------
+    1           4             4                 100         
+    2           4             3                 75          
+    3           2             1                 50        
 
 ### C. Ingredient Optimisation
 

@@ -1,6 +1,12 @@
 # Case Study 2: Pizza Runner
 
 A compact SQL project exploring customer ordering behavior, pizza customizations, delivery metrics, and runner performance.
+### Table of Contents
+- [Data Cleaning and Transformation](#data-cleaning-and-transformation)
+- [A. Pizza Metrics](#a-pizza-metrics)
+- [B. Runner and Customer Experience](#b-runner-and-customer-experience)
+- [C. Ingredient Optimisation](#c-ingredient-optimisation)
+- [D. Pricing and Ratings](#d-pricing-and-ratings)
 
 ## Questions & SQL Queries
 ### Data Cleaning and Transformation
@@ -46,7 +52,7 @@ END AS cancellation
 INTO #temp_runner_orders
 FROM runner_orders;
 ```
-### Pizza Metrics
+### A. Pizza Metrics
 #### 1. How many pizzas were ordered?
 ```sql
 SELECT
@@ -227,3 +233,37 @@ ORDER BY DATEPART(weekday, order_time);
     5             Thursday    3                  
     6             Friday      1                  
     7             Saturday    5                  
+
+
+### B. Runner and Customer Experience
+#### 1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
+```sql
+```
+
+#### 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+```sql
+```
+
+#### 3. Is there any relationship between the number of pizzas and how long the order takes to prepare?
+```sql
+```
+
+#### 4. What was the average distance travelled for each customer?
+```sql
+```
+
+#### 5. What was the difference between the longest and shortest delivery times for all orders?
+```sql
+```
+
+#### 6. What was the average speed for each runner for each delivery and do you notice any trend for these values?
+```sql
+```
+
+#### 7. What is the successful delivery percentage for each runner?
+```sql
+```
+
+### C. Ingredient Optimisation
+
+### D. Pricing and Ratings
